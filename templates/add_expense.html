@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense</title>
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --primary-light: #ff6b81;
+            --text-dark: #2f3542;
+            --text-light: #a4b0be;
+            --bg-gradient: linear-gradient(135deg, #fff1f1 0%, #ffebee 100%);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .expense-form {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            transition: transform 0.3s ease;
+        }
+        
+        .expense-form:hover {
+            transform: translateY(-5px);
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .form-title {
+            color: var(--primary-color);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .form-subtitle {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 16px 16px 16px 48px;
+            border: 2px solid #f1f2f6;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.2);
+            background-color: white;
+        }
+        
+        .form-input::placeholder {
+            color: var(--text-light);
+            font-weight: 400;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #ff3f3f, #ff5e7d);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <form class="expense-form" action="/add_expense" method="POST">
+        <div class="form-header">
+            <h1 class="form-title">Add Expense</h1>
+            <p class="form-subtitle">Track your spending wisely</p>
+        </div>
+        
+        <div class="input-group">
+            <i class="fas fa-rupee-sign input-icon"></i>
+            <input type="number" 
+                   class="form-input" 
+                   name="amount" 
+                   placeholder="Enter amount" 
+                   required 
+                   step="0.01" 
+                   min="0.01">
+        </div>
+        
+        <div class="input-group">
+            <i class="fas fa-tag input-icon"></i>
+            <input type="text" 
+                   class="form-input" 
+                   name="category" 
+                   placeholder="Category" 
+                   required>
+        </div>
+        
+        <button type="submit" class="submit-btn">
+            <i class="fas fa-plus-circle"></i>
+            Add Expense
+        </button>
+    </form>
+</body>
+</html>

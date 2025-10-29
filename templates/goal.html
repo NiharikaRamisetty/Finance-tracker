@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings Goal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .goal-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 28px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        input[type="number"] {
+            width: 85%;
+            padding: 16px 20px;
+            margin-bottom: 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: all 0.3s;
+            background-color: #f8f9fa;
+        }
+
+        input[type="number"]:focus {
+            border-color: #4facfe;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
+            background-color: white;
+        }
+
+        button {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #3a9bed, #00d9e6);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .currency-indicator {
+            position: relative;
+        }
+
+        .currency-indicator::before {
+            content: "₹";
+            position: absolute;
+            left: 15px;
+            top: 16px;
+            font-size: 18px;
+            color: #7f8c8d;
+            z-index: 1;
+        }
+
+        .currency-indicator input {
+            padding-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="goal-container">
+        <h2>Set Savings Goal</h2>
+        <form method="POST">
+            <label for="target_amount">How much do you want to save?</label>
+            <div class="currency-indicator">
+                <input type="number" step="0.01" name="target_amount" id="target_amount" 
+                       placeholder="Enter amount" required>
+            </div>
+            <button type="submit">Save Goal</button>
+        </form>
+    </div>
+</body>
+</html>

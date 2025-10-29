@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-weight: 700;
+            font-size: 32px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .action-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .income-card {
+            border-top: 4px solid #4CAF50;
+        }
+
+        .expense-card {
+            border-top: 4px solid #F44336;
+        }
+
+        .goal-card {
+            border-top: 4px solid #2196F3;
+        }
+
+        .report-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #673AB7;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .report-link:hover {
+            background: #5E35B1;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .income-icon { color: #4CAF50; }
+        .expense-icon { color: #F44336; }
+        .goal-icon { color: #2196F3; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Welcome to your Dashboard</h2>
+        
+        <div class="action-grid">
+            <form action='/add_income' method="get" class="action-card income-card">
+                <div class="card-icon income-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="card-title">Add Income</div>
+                <button type="submit" style="display: none;"></button>
+            </form>
+
+            <form action="/add_expense" method="get" class="action-card expense-card">
+                <div class="card-icon expense-icon">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <div class="card-title">Add Expense</div>
+                <button type="submit" style="display: none;"></button>
+            </form>
+
+            <form action="/goal" method="get" class="action-card goal-card">
+                <div class="card-icon goal-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div class="card-title">Set Goal</div>
+                <button type="submit" style="display: none;"></button>
+            </form>
+        </div>
+
+        <a href="/reports" class="report-link">
+            <i class="fas fa-chart-bar"></i> View Reports
+        </a>
+    </div>
+
+    <script>
+    document.querySelectorAll('.action-card').forEach(card => {
+        // Make card clickable
+        card.style.cursor = 'pointer';
+        
+        // Add click handler
+        card.addEventListener('click', function(e) {
+            // Ignore clicks if they're on interactive elements inside the card
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a, button')) {
+                return;
+            }
+            
+            // Trigger the form submission
+            const button = this.querySelector('button');
+            if (button) {
+                button.click();
+            }
+        });
+
+        // Visual feedback on mouse down
+        card.addEventListener('mousedown', function() {
+            this.style.transform = 'translateY(2px)';
+        });
+
+        card.addEventListener('mouseup', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+
+        // Keyboard accessibility
+        card.setAttribute('tabindex', '0');
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const button = this.querySelector('button');
+                if (button) {
+                    button.click();
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
