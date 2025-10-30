@@ -1,6 +1,10 @@
-from flask import Flask, render_template, request, redirect, session
-from flask_sqlalchemy import SQLAlchemy
-from datetime import date
+# --- Flask framework imports ---
+from flask import Flask, render_template, request, redirect, session  
+# --- Database integration ---
+from flask_sqlalchemy import SQLAlchemy  
+# --- Date and time handling ---
+from datetime import date  
+# Used for working with and storing the current date (e.g., timestamps, records)
 
 app = Flask(__name__)
 app.secret_key = 'secret'
